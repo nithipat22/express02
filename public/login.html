@@ -39,6 +39,34 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <form>
+            <input id="username" type="text">
+            <input id="password" type="password">
+            <button type="button" onclick="login()">login</button>
+        </form>
+        <script>
+            function login() {
+                const data = {
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                };
+
+                // console.log('Username:', username, 'Password:', password);
+                fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data
+                    })
+                }).then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error))
+            }
+        </script>
+    </div>
 </body>
 
 </html>
