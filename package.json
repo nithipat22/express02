@@ -1,24 +1,21 @@
 {
-  "name": "express02",
+  "name": "exprss",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nithipat22/express02.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nithipat22/express02/issues"
-  },
-  "homepage": "https://github.com/nithipat22/express02#readme",
   "dependencies": {
     "express": "^5.1.0",
     "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.10.3"
   }
 }

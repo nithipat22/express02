@@ -1,8 +1,29 @@
 const express = require('express')
+const livereload = require('livereload')
+const connectLivereload = require('connect-livereload')
+const path = require('path')
+
 const app = express()
 const port = 80
-app.use(express.static('public'))
+
+// 1) สร้าง livereload server
+const lrserver = livereload.createServer()
+lrserver.watch(path.join(__dirname, 'public')) // watch โฟลเดอร์ public
+
+// 2) ใส่ middleware (ต้องอยู่ก่อน static)
+app.use(connectLivereload())
+
+// 3) serve static files
+app.use(express.static(path.join(__dirname, 'public')))
+
+// 4) server json
 app.use(express.json())
+app.post('/api/checkEmail', (req, res) => {
+    res.status(200).json({ massage: "success" })
+})
+app.post('/api/register', (req, res) => {
+    res.status(200).json({ message: "succuss" })
+})
 const users = [
     { username: 'username', password: 'password', role: 'admin' },
     { username: 'user', password: 'abcd', role: 'user' }
@@ -27,5 +48,5 @@ app.post('/api/login', (req, res) => {
 
 })
 app.listen(port, () => {
-    console.log(`app listen http://localhost:${(port)}`)
+    console.log(`🚀 App running at http://localhost:${port}`)
 })
